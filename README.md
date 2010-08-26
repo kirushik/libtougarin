@@ -1,6 +1,6 @@
 libtougarin by Кирилл Пименов, <kirushik@gmail.com>
 
-created at Чтв Авг 26 16:03:51 MSD 2010
+Сreated at Чтв Авг 26 16:03:51 MSD 2010.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,7 +18,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ### Общее описание
 Данная библиотека реализует сохранение и загрузку диаграмм языка [ДРАКОН](http://ru.wikipedia.org/wiki/%D0%94%D0%A0%D0%90%D0%9A%D0%9E%D0%9D) в классы языка C++.
 
-Для сохранения на диске классы сериализуются в формате [JSON]() с англоязычными заголовками элементов и полной поддержкой UTF-8 в их описаниях.
+Для сохранения на диске классы сериализуются в формате [JSON](http://ru.wikipedia.org/wiki/JSON) с англоязычными заголовками элементов и полной поддержкой UTF-8 в их описаниях.
+
+Пример такого сериализованного класса можно посмотреть в файле sample.json.
 
 ### Системные требования
 Разработка ведётся под GNU/Linux с использованием компилятора g++.

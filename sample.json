@@ -1,0 +1,216 @@
+{
+    "DRAGON-HEADER": {
+        "version": "0.1"
+    },
+    "DRAGON-SCHEME": [
+        {
+            "title": "Алгоритм реального времени \"Проверка летающей тарелки\"",
+
+            "entrypoints" : [
+                {
+                    "text": "Проверка летающей тарелки",
+                    "branch_id": 1;
+                },
+                {
+                    "text": "Испытания тарелки в полёте",
+                    "branch_id": 3;
+                }
+            ],
+
+            "contents": [
+
+                "branch": {
+                    "text": "Проверка двигателей летающей тарелки",
+                    "id": 1,
+                    "contents": [
+                        "routine": {
+                            "text": "Проверка двигателей"
+                        },
+                        "setTimer": {
+                            "variable": "T",
+                            "value": 0,
+                            "timeunit": "second"
+                        },
+                        "joint": {
+                            "id": 1,
+                            "text": "Z"
+                        },
+                        "question": {
+                            "text": "Левый двигатель в норме?",
+                            "answers": [
+                                "yes": [
+                                    "goToJoint": {
+                                        "joint_id": 2
+                                    }
+                                ],
+                                "no": [
+                                    "question": {
+                                        "text": "Правый двигатель в норме?",
+                                        "answers": [
+                                            "yes": [
+                                                "goToJoint": {
+                                                    "joint_id": 2
+                                                }
+                                    ],
+                                            "no": [
+                                                "question": {
+                                                    "text": "T > 3 мин",
+                                                    "condition": "T>180",
+                                                    "answers": [
+                                                        "yes": [
+                                                            "routine": {
+                                                                "text": "Включить фотонный двигатель"
+                                                            },
+                                                            "goToJoint": {
+                                                                "joint_id": 3
+                                                            }
+                                                        ],
+                                                        "no": [
+                                                            "delay":  {
+                                                                "text": "4с",
+                                                                "value": 4,
+                                                                "timeunit": "second"
+                                                            },
+                                                            "goToJoint": {
+                                                                "joint_id": 1
+                                                            }
+                                                        ]
+                                                    ]
+                                                }
+                                            ]
+                                        ]
+                                    }
+                                ]
+                            ]
+                        },
+                        "joint": {
+                            "id": 2
+                        },
+                        "routine": {
+                            "text": "Включить плазменный реактор"
+                        },
+                        "joint": {
+                            "id": 3
+                        },
+                        "delay": {
+                            "text": "4с",
+                            "value": 4,
+                            "timeunit": "second"
+                        },
+                        "question": {
+                            "text": "Тарелка взорвалась?",
+                            "answers": [
+                                "no": [
+                                    "executeBranch": {
+                                        "branch_id": 3
+                                    }
+                                ],
+                                "yes": [
+                                    "executeBranch": {
+                                        "Branch_id": 2
+                                    }
+                                ]
+                            ]
+                        }
+                    ]
+                },
+
+                "branch": {
+                    "text": "Ремонт летающей тарелки",
+                    "id":2,
+                    "contents": [
+                        "shelf": {
+                            "header": "Установить признак",
+                            "footer": "Авария тарелки",
+
+                            "variable": "Авария тарелки",
+                            "type": "boolean",
+                            "value": "true"
+                        },
+                        "routine": {
+                            "text": "Вызов главного демона"
+                        },
+                        "routine": {
+                            "text": "Волшебный ремонт тарелки"
+                        },
+                        "delay": {
+                            "text": "2мин 48сек",
+                            "value": 168,
+                            "timeunit": "second"
+                        },
+                        "shelf": {
+                            "header": "Снять признак",
+                            "footer": "Авария тарелки",
+
+                            "variable": "Авария тарелки",
+                            "type": "boolean",
+                            "value": "false"
+                        },
+                        "executeBranch": {
+                            "branch_id": 3
+                        }
+                    ]
+                },
+
+                "branch": {
+                    "text": "Пробный полёт летающей тарелки",
+                    "id":3,
+                    "contents": [
+                        "setTimer": {
+                            "variable": "A",
+                            "value": 0,
+                            "timeunit": "minute"
+
+                        },
+                        "routine": {
+                            "text": "Включить телепортацию",
+                            "syncWith": {
+                                "variable": "A",
+                                "value": 3
+                            }
+                        },
+                        "routine": {
+                            "text": "Отключить гравитацию",
+                            "syncWith": {
+                                "variable": "A",
+                                "value": 5
+                            }
+                        },
+                        "routine": {
+                            "text": "Выход из астрального тела",
+                            "syncWith": {
+                                "variable": "A",
+                                "value": 8
+                            }
+                        },
+                        "process": {
+                            "header": "Останов",
+                            "footer": "Шабаш злых духов",
+
+                            "process_id": 117,
+                            "action": "stop"
+                        },
+                        "process": {
+                            "header": "Пуск",
+                            "footer": "Шабаш добрых духов",
+
+                            "process_id": 115,
+                            "action": "start"
+                        },
+                        "routine": {
+                            "text": "Пробный полёт тарелки"
+                        },
+                        "routine": {
+                            "text": "Анализ полёта"
+                        },
+                        "end": {
+                            "text": "Конец"
+                        }
+                    ]
+                }
+
+            ]
+        }
+    ]
+}
+
