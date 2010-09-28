@@ -37,35 +37,46 @@
                         },
                         "question": {
                             "text": "Левый двигатель в норме?",
-                            "answers": [
-                                "yes": [
+                            "yes": {
+                                "text": "Да",
+                                "actions": [
                                     "goToJoint": {
                                         "joint_id": 2
                                     }
-                                ],
-                                "no": [
+                                },
+                            "no": {
+                                "text": "Нет",
+                                "actions": [
                                     "question": {
                                         "text": "Правый двигатель в норме?",
-                                        "answers": [
-                                            "yes": [
+                                        "yes": {
+                                            "text": "Да",
+                                            "actions": [
                                                 "goToJoint": {
                                                     "joint_id": 2
                                                 }
-                                    ],
-                                            "no": [
+                                            ],
+                                        },
+                                        "no": {
+                                            "text": "Нет",
+                                            "actions": [
                                                 "question": {
                                                     "text": "T > 3 мин",
                                                     "condition": "T>180",
-                                                    "answers": [
-                                                        "yes": [
+                                                    "yes": {
+                                                        "text": "Да",
+                                                        "actions": [
                                                             "routine": {
                                                                 "text": "Включить фотонный двигатель"
                                                             },
                                                             "goToJoint": {
                                                                 "joint_id": 3
                                                             }
-                                                        ],
-                                                        "no": [
+                                                        ]
+                                                    },
+                                                    "no": {
+                                                        "text": "Нет",
+                                                        "actions": [
                                                             "delay":  {
                                                                 "text": "4с",
                                                                 "value": 4,
@@ -75,13 +86,14 @@
                                                                 "joint_id": 1
                                                             }
                                                         ]
-                                                    ]
+                                                    }
+
                                                 }
                                             ]
-                                        ]
+                                        }
                                     }
                                 ]
-                            ]
+                            }
                         },
                         "joint": {
                             "id": 2
@@ -99,18 +111,22 @@
                         },
                         "question": {
                             "text": "Тарелка взорвалась?",
-                            "answers": [
-                                "no": [
+                            "no": {
+                                "text": "Нет",
+                                "actions": [
                                     "executeBranch": {
                                         "branch_id": 3
                                     }
-                                ],
-                                "yes": [
+                                ]
+                            },
+                            "yes": {
+                                "text": "Да",
+                                "actions": [
                                     "executeBranch": {
                                         "Branch_id": 2
                                     }
                                 ]
-                            ]
+                            }
                         }
                     ]
                 },
