@@ -1,0 +1,179 @@
+---
+DRAGON_SCHEME_DESCRIPTION:
+  version: 0
+  subversion: 2
+DRAGON_SCHEME_DATA:
+  heading:
+    ????: ????
+  skewers:
+
+  - text: Проверка двигателей летающей тарелки
+    contents:
+
+    - type: routine
+      text: Проверка двигателей
+
+    - type: set_timer
+      variable: T
+      value: 0
+      time_unit: second
+
+    - type: joint
+      text: Z
+      joint_id: 1
+
+    - type: question
+      text: Левый двигатель в норме?
+
+      default_answer:
+        text: Да
+        contents:
+
+        - type: joint
+          joint_id: 2
+
+        - type: routine
+          text: Включить плазменный реактор
+
+      alternative_answer:
+        text: Нет
+        contents:
+
+        - type: question
+          text: Правый двигатель в норме?
+
+          default_answer:
+            text: Да
+            contents:
+
+            - type: go_to_joint
+              joint_id: 2
+
+          alternative_answer:
+            text: Нет
+            contents:
+
+            - type: question
+              text: T > 3 минут?
+              clause:
+                variable: T
+                condition: gt
+                value: 180
+
+              default_answer:
+                text: Да
+                case: true
+                contents:
+
+                - type: routine
+                  text: Включить фотонный двигатель
+
+              alternative_answer:
+                text: Нет
+                case: false
+                contents:
+
+                - type: delay
+                  text: 4сек
+                  value: 4
+                  time_unit: second
+
+                - type: go_to_joint
+                  joint_id: 1
+
+    - type: delay
+      value: 4
+      time_unit: second
+
+    - type: question
+      text: Тарелка взорвалась?
+
+      default_answer:
+        text: Нет
+        contents:
+
+        - type: go_to_skewer
+          skewer_id: 3
+
+      alternative_answer:
+        text: Да
+        contents:
+
+        - type: go_to_skewer
+          skewer_id: 2
+
+  - text: Ремонт летающей тарелки
+    contents:
+
+    - type: shelf
+      text: Установить признак
+      variable: Авария тарелки
+      value: true
+
+    - type: routine
+      text: Вызов главного демона
+
+    - type: routine
+      text: Волшебный ремонт тарелки
+
+    - type: delay
+      text: 2мин 48сек
+      value: 168
+      time_unit: second
+
+    - type: shelf
+      text: Установить признак
+      variable: Авария тарелки
+      value: "false"
+
+    - type: go_to_skewer
+      skewer_id: 3
+
+  - text: Пробный полёт летающей тарелки
+    contents:
+
+    - type: setTimer
+      variable: A
+      value: 0
+      timeunit: minute
+
+    - type: routine
+      text: Включить телепортацию
+      syncWith:
+        variable: A
+        value: 3
+
+    - type: routine
+      text: Отключить гравитацию
+      syncWith:
+        variable: A
+        value: 5
+
+    - type: routine
+      text: Выход из астрального тела
+      syncWith:
+        variable: A
+        value: 8
+
+    - type: process
+      contents:
+      - text: Останов
+      - text: Шабаш злых духов
+      process_id: 117
+      action: stop
+
+    - type: process
+      header: Пуск
+      footer: Шабаш добрых духов
+      process_id: 115
+      action: start
+
+    - type: routine
+      text: Пробный полёт тарелки
+
+    - type: routine
+      text: Анализ полёта
+
+    - type: finish
+      text: Конец
+...
